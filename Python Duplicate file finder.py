@@ -1,6 +1,6 @@
 #wikiti
 
-import os, sys, hashlib
+import os, sys, hashlib, json
 
 
 # The blocks reffers to a part of the file thats going to be read, and get hash calculation
@@ -62,6 +62,13 @@ def outPutResults(dictA):
     else:
         print('No duplicate files found.')
 
+# Save dictionary on log.txt (file in main folder)
+
+def logArchive(dictio):
+	dictio = {'dictio': dictio}
+	with open('log.txt', 'w') as file:
+		file.write(json.dumps(dictio))
+
 
 # POO Main 
 if __name__ == '__main__':
@@ -77,8 +84,11 @@ if __name__ == '__main__':
                 print('%s is not a valid path, please verify' % i)
                 sys.exit()
         outPutResults(duplicated)
+        print('Log archive in main directory, saved as log.txt. ')
+        logArchive(duplicated)
     else:
         print('Usage: python archive.py folder or folders to analyse.')
+
 
 
 
