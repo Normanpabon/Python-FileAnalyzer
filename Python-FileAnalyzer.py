@@ -129,50 +129,53 @@ def TurnOnIncinerator(dic):
 	print("That's All of your Trash...\n")
 
 
+def menu():
+	print("wikitiki")
+	duplicated = {}
+	folders = sys.argv[1:]
+	for i in folders:
+		# Iterate the folders given
+		if os.path.exists(i):
+		# Find the duplicated files and append them to the dictionary
+			uniteDict(duplicated, duplicatedFiles(i))
+		else:
+			print('%s is not a valid path, please verify' % i)
+			sys.exit()
+	if outPutResults(duplicated):
+		Go = int(input("What you want to do? \n 1) Delete All of the Duplicates \n 2) Exit \n"))
+		if Go == 1:
+			TurnOnIncinerator(duplicated)
+
+			print('Log archive in main directory, saved as log.txt. ')
+			logArchive(duplicated)
+				
+			#conditional to copy the archives to a new folder
+			#opt == option choosed by the user
+			opt = 0 
+			while opt != 1 or opt != 2:
+				opt = int(input("Do you want to copy the archives to a new folder ? \n 1) Yes \n 2) No, exit. \n Option = "))
+				if opt == 1:
+					for i in folders:
+						#This copies the remain archives to a new folder 
+						FilesCollector(i)
+				else:
+					print("Bye.")
+					sys.exit()
+			
+		else:
+			print('No duplicated files found... Byeeeee!')
+
+	else:
+		print('\n', 'Usage: python "Python-FileAnalyzer.py" folder or folders to analyse.')
+		
 
 
 
 # POO Main 
 if __name__ == '__main__':
 	if len(sys.argv) > 1:
-		duplicated = {}
-		folders = sys.argv[1:]
-		for i in folders:
-			# Iterate the folders given
-			if os.path.exists(i):
-			# Find the duplicated files and append them to the dictionary
-				uniteDict(duplicated, duplicatedFiles(i))
-			else:
-				print('%s is not a valid path, please verify' % i)
-				sys.exit()
-		if outPutResults(duplicated):
-			Go = int(input("What you want to do? \n 1) Delete All of the Duplicates \n 2) Exit \n"))
-			if Go == 1:
-				TurnOnIncinerator(duplicated)
-
-				print('Log archive in main directory, saved as log.txt. ')
-				logArchive(duplicated)
-				
-				#conditional to copy the archives to a new folder
-				#opt == option choosed by the user
-				opt = 0 
-				while opt != 1 or opt != 2:
-					opt = int(input("Do you want to copy the archives to a new folder ? \n 1) Yes \n 2) No, exit. \n Option = "))
-					if opt == 1:
-						for i in folders:
-							#This copies the remain archives to a new folder 
-							FilesCollector(i)
-					else:
-						print("Bye.")
-						sys.exit()
-			
-		else:
-			print('No duplicated files found... Byeeeee!')
-
-	else:
-		print('Usage: python "Python-FileAnalyzer.py" folder or folders to analyse.')
+		menu()
 		
-
 
 
 
