@@ -1,6 +1,6 @@
 # Python-FileAnalyzer
 
-# EN
+## EN
 
 File analyzer written in python.
 
@@ -21,12 +21,12 @@ Requieriments:
 
 Python 3.1+
 
-# USE
+## USE
 
 In a terminal type: python Python-FileAnalyzer.py (folder or folders names to search for duplicated files).
 
 
-# ES
+## ES
 
 Analizador de archivos escrito en python.
 
@@ -47,6 +47,6 @@ Requisitos:
 
 Python 3.1+
 
-# Uso
+## Uso
 
 En una terminal o CMD, escribe: python Python-FileAnalyzer.py (carpeta o carpetas que desees analizar).
