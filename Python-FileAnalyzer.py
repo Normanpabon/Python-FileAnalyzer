@@ -79,10 +79,11 @@ def FilesCollector(path):
 	Recives a path, and copies every file to a new folder called: FILESCOLLECTION
 	"""
 	try:
+
 		# Create target Directory
 		folderName = "FilesCollection"
 		os.mkdir(folderName)
-		print(folderName ,  "Folder Created") 
+		print(folderName ,  "Folder Created", '\n Folder Name = "FilesCollection"') 
 	except FileExistsError:
 		print("Directory " , folderName ,  " already exists")
 	
@@ -151,10 +152,19 @@ if __name__ == '__main__':
 
 				print('Log archive in main directory, saved as log.txt. ')
 				logArchive(duplicated)
-				for i in folders:
-					#This copies the remain archives to a new folder 
-					FilesCollector(i)
 				
+				#conditional to copy the archives to a new folder
+				#opt == option choosed by the user
+				opt = 0 
+				while opt != 1 or opt != 2:
+					opt = int(input("Do you want to copy the archives to a new folder ? \n 1) Yes \n 2) No, exit. \n Option = "))
+					if opt == 1:
+						for i in folders:
+							#This copies the remain archives to a new folder 
+							FilesCollector(i)
+					else:
+						print("Bye.")
+						sys.exit()
 			
 		else:
 			print('No duplicated files found... Byeeeee!')
