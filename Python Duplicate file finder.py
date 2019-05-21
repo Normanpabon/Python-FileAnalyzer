@@ -1,6 +1,6 @@
 #wikiti
 
-import os, sys, hashlib, json
+import os, sys, hashlib, json, shutil
 
 
 # The blocks reffers to a part of the file thats going to be read, and get hash calculation
@@ -72,6 +72,35 @@ def logArchive(dictio):
 
 
 
+
+
+def FilesCollector(path):
+	"""
+	Recives a path, and copies every file to a new folder called: FILESCOLLECTION
+	"""
+	try:
+		# Create target Directory
+		folderName = "FilesCollection"
+		os.mkdir(folderName)
+		print(folderName ,  "Folder Created") 
+	except FileExistsError:
+		print("Directory " , folderName ,  " already exists")
+	
+	if os.path.exists(folderName):
+
+		for dirName, subdirs, fileList in os.walk(path):
+			for filename in fileList:
+				# Get file location//path
+				location = os.path.join(dirName, filename)
+				print("This archive is going to be copied: ")
+				print(location)
+				print('\n')
+				try:
+					shutil.copy2(location, folderName)
+				except OSError as e:
+					print(f'Error: {location} : {e.strerror}')
+
+
 def Incinerate(path):
 	"""
 	Recives a path, and erase the archive in that path
@@ -120,6 +149,11 @@ if __name__ == '__main__':
 
 				print('Log archive in main directory, saved as log.txt. ')
 				logArchive(duplicated)
+				for i in folders:
+					#This copies the remain archives to a new folder 
+					FilesCollector(i)
+				
+			
 		else:
 			print('No duplicate files found... Byeeeee!')
 
