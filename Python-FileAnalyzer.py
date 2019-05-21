@@ -22,7 +22,7 @@ def duplicatedFiles(Folder):
 	duplicated = {}
 	for dirName, subdirs, fileList in os.walk(Folder):
 		# Prints the directory that is getting scanning 
-		print("Looking %s..." % dirName)
+		print("Parsing %s..." % dirName)
 		for filename in fileList:
 			# Get file location//path
 			location = os.path.join(dirName, filename)
@@ -125,7 +125,9 @@ def TurnOnIncinerator(dic):
 			#The for starts after the first item duplicated.
 			Incinerate(file)
 
-	print("That's All your Trash...\n")
+	print("That's All of your Trash...\n")
+
+
 
 
 
@@ -155,11 +157,11 @@ if __name__ == '__main__':
 				
 			
 		else:
-			print('No duplicate files found... Byeeeee!')
+			print('No duplicated files found... Byeeeee!')
 
 	else:
-		print('Usage: python archive.py folder or folders to analyse.')
-
+		print('Usage: python "Python-FileAnalyzer.py" folder or folders to analyse.')
+		
 
 
 
