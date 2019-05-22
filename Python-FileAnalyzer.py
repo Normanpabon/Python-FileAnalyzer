@@ -72,11 +72,7 @@ def logArchive(dictio):
 
 
 
-
-
-def FilesCollector(path):
-
-
+def fileTypes():
 	# Predefines files extension List's
 	# Documents
 	docFiles = ['.txt', '.docx', '.doc', '.pdf']
@@ -85,9 +81,43 @@ def FilesCollector(path):
 	# Audio
 	audFiles = ['.mp3', '.wma', '.flac', '.acc', 'm4a', '.ogg']
 	# Video
-	vidFiles = ['.mp4', '.wmv', '.mov', '.m4v', '.flv', '.mpg', '.avi' ] 
+	vidFiles = ['.mp4', '.wmv', '.mov', '.m4v', '.flv', '.mpg', '.avi' ]
+	# All files
+	allFiles = ['.*'] 
 	# Custom Dictionary with specific extencions gived by the user
 	customFiles = [] 
+
+	print("Please select the archives that you want to copy. \n")
+	print("1) Doc files (txt, docx, doc, pdf). \n",	"2) Images files (png, gif, jpg, jpge). \n", "3) Audio files (mp3, wma, flac...). \n", "4) Video files (mp4, wmv, mov...). \n", "5) All files. \n", "6) Custom files extension.")
+	x = int(input(""))
+	# no finished, use a for plox
+	if (x >= 1) and (x <= 6):
+		if (x == 1):
+			pass
+		elif (x == 2):
+			pass
+		elif (x == 3):
+			pass
+		elif (x == 4):
+			pass
+		elif (x == 5):
+			pass
+		elif (x == 6):
+			pass
+		else:
+			print("how do you get here ?")
+
+		print("wikiti")
+		#add for to get all elements in the list 
+	else:
+		print("Select a valid option. \n")
+		fileTypes()
+
+
+
+
+def FilesCollector(path):
+
 
 
 	"""
@@ -108,7 +138,7 @@ def FilesCollector(path):
 
 		for dirName, subdirs, fileList in os.walk(path):
 			for filename in fileList:
-				if filename.endswith(('.xlsx','.docx')): 
+				if filename.endswith((fileTypes())): 
 					# Get file location//path
 					location = os.path.join(dirName, filename)
 					print("This archive is going to be copied: ")
