@@ -75,6 +75,21 @@ def logArchive(dictio):
 
 
 def FilesCollector(path):
+
+
+	# Predefines files extension List's
+	# Documents
+	docFiles = ['.txt', '.docx', '.doc', '.pdf']
+	# Images
+	imagFiles = ['.png', '.gif', '.jpg', '.jpge']
+	# Audio
+	audFiles = ['.mp3', '.wma', '.flac', '.acc', 'm4a', '.ogg']
+	# Video
+	vidFiles = ['.mp4', '.wmv', '.mov', '.m4v', '.flv', '.mpg', '.avi' ] 
+	# Custom Dictionary with specific extencions gived by the user
+	customFiles = [] 
+
+
 	"""
 	Recives a path, and copies every file to a new folder called: FILESCOLLECTION
 	"""
