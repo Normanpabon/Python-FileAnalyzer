@@ -83,23 +83,26 @@ def FilesCollector(path):
 		# Create target Directory
 		folderName = "FilesCollection"
 		os.mkdir(folderName)
-		print(folderName ,  "Folder Created", '\n Folder Name = "FilesCollection"') 
+		print(folderName ,  "Folder Created", '\n Folder Name = "FilesCollection"\n') 
 	except FileExistsError:
-		print("Directory " , folderName ,  " already exists")
+		print("Directory " , folderName ,  " already exists \n")
 	
 	if os.path.exists(folderName):
+		
+		fTypes = input("Choose the files types ( each separate with ',' eg. .txt, .docx, .jpg): ")
 
 		for dirName, subdirs, fileList in os.walk(path):
 			for filename in fileList:
-				# Get file location//path
-				location = os.path.join(dirName, filename)
-				print("This archive is going to be copied: ")
-				print(location)
-				print('\n')
-				try:
-					shutil.copy2(location, folderName)
-				except OSError as e:
-					print(f'Error: {location} : {e.strerror}')
+				if filename.endswith(('.xlsx','.docx')): 
+					# Get file location//path
+					location = os.path.join(dirName, filename)
+					print("This archive is going to be copied: ")
+					print(location)
+					print('\n')
+					try:
+						shutil.copy2(location, folderName)
+					except OSError as e:
+						print(f'Error: {location} : {e.strerror}')
 
 
 def Incinerate(path):
@@ -142,7 +145,7 @@ def menu():
 			print('%s is not a valid path, please verify' % i)
 			sys.exit()
 	if outPutResults(duplicated):
-		Go = int(input("What you want to do? \n 1) Delete All of the Duplicates \n 2) Exit \n"))
+		Go = int(input("What you want to do? \n 1) Delete All of the Duplicates \n 2) Start the file collector without deleting the duplicates! \n 3) Exit \n"))
 		if Go == 1:
 			TurnOnIncinerator(duplicated)
 
@@ -161,7 +164,10 @@ def menu():
 				else:
 					print("Bye.")
 					sys.exit()
-			
+		if Go == 2:
+			for i in folders:
+				#This copies the remain archives to a new folder 
+				FilesCollector(i)	
 		else:
 			print('No duplicated files found... Byeeeee!')
 
