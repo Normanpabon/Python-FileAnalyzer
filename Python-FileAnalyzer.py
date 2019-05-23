@@ -75,43 +75,50 @@ def logArchive(dictio):
 def fileTypes():
 	# Predefines files extension List's
 	# Documents
-	docFiles = ['.txt', '.docx', '.doc', '.pdf']
+	docFiles = ('.txt', '.docx', '.doc', '.pdf')
 	# Images
-	imagFiles = ['.png', '.gif', '.jpg', '.jpge']
+	imagFiles = ('.png', '.gif', '.jpg', '.jpge')
 	# Audio
-	audFiles = ['.mp3', '.wma', '.flac', '.acc', 'm4a', '.ogg']
+	audFiles = ('.mp3', '.wma', '.flac', '.acc', 'm4a', '.ogg')
 	# Video
-	vidFiles = ['.mp4', '.wmv', '.mov', '.m4v', '.flv', '.mpg', '.avi' ]
-	# All files
-	allFiles = ['.*'] 
-	# Custom Dictionary with specific extencions gived by the user
+	vidFiles = ('.mp4', '.wmv', '.mov', '.m4v', '.flv', '.mpg', '.avi' ) 
+	# Custom list with specific extencions gived by the user
 	customFiles = [] 
 
 	print("Please select the archives that you want to copy. \n")
-	print("1) Doc files (txt, docx, doc, pdf). \n",	"2) Images files (png, gif, jpg, jpge). \n", "3) Audio files (mp3, wma, flac...). \n", "4) Video files (mp4, wmv, mov...). \n", "5) All files. \n", "6) Custom files extension.")
+	print("1) Doc files (txt, docx, doc, pdf). \n",	"2) Images files (png, gif, jpg, jpge). \n", "3) Audio files (mp3, wma, flac...). \n", "4) Video files (mp4, wmv, mov...). \n", "5) Custom files extension.")
 	x = int(input(""))
 	# no finished, use a for plox
-	if (x >= 1) and (x <= 6):
+	if (x > 0) and (x < 7):
 		if (x == 1):
-			pass
+			return docFiles
 		elif (x == 2):
-			pass
+			return imagFiles
 		elif (x == 3):
-			pass
+			return audFiles
 		elif (x == 4):
-			pass
+			return vidFiles
 		elif (x == 5):
-			pass
-		elif (x == 6):
-			pass
+			print("Please write the type of files you want. ### INSIDE singles quotes! ### eg: '.bat','.iso','.wav'\n")
+		
+################################################
+################################################
+################################################
+################################################
+			################################################
+################################################
+################################################
+			ownFiles= input(":")
+			print(ownFiles)
+			return ownFiles
 		else:
-			print("how do you get here ?")
+			print("how did you get here ?")
 
 		print("wikiti")
 		#add for to get all elements in the list 
 	else:
 		print("Select a valid option. \n")
-		fileTypes()
+		return fileTypes()
 
 
 
@@ -134,12 +141,32 @@ def FilesCollector(path):
 	
 	if os.path.exists(folderName):
 		
-		fTypes = input("Choose the files types ( each separate with ',' eg. .txt, .docx, .jpg): ")
+		fTypes = int(input("Do you want to copy every type of file? \n 1)Yes \n 2)No \n:"))
+
+		if fTypes == 2:
+			filestypes = fileTypes()
 
 		for dirName, subdirs, fileList in os.walk(path):
 			for filename in fileList:
-				if filename.endswith((fileTypes())): 
-					# Get file location//path
+
+				if fTypes == 2:
+
+					if filename.endswith(filestypes):
+					# The endswith works with a parameter like ('.txt','.wav'). The parenthesis and sigle quotes are mandatory.
+					# That's why we have to use tuples, because tuples are like ('','','').
+					  
+						# Get file location//path
+						location = os.path.join(dirName, filename)
+						print("This archive is going to be copied: ")
+						print(location)
+						print('\n')
+						try:
+							shutil.copy2(location, folderName)
+						except OSError as e:
+							print(f'Error: {location} : {e.strerror}')
+				
+				if fTypes == 1:
+
 					location = os.path.join(dirName, filename)
 					print("This archive is going to be copied: ")
 					print(location)
@@ -148,7 +175,6 @@ def FilesCollector(path):
 						shutil.copy2(location, folderName)
 					except OSError as e:
 						print(f'Error: {location} : {e.strerror}')
-
 
 def Incinerate(path):
 	"""
