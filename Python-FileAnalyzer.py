@@ -82,11 +82,13 @@ def fileTypes():
 	audFiles = ('.mp3', '.wma', '.flac', '.acc', 'm4a', '.ogg')
 	# Video
 	vidFiles = ('.mp4', '.wmv', '.mov', '.m4v', '.flv', '.mpg', '.avi' ) 
-	# Custom list with specific extencions gived by the user
+	# Custom list with specific extencions gived by the user, after that is converted to a tuple
 	customFiles = [] 
+	# unnecessary tupla, but wikiti
+	allFiles = ('.*') 
 
 	print("Please select the archives that you want to copy. \n")
-	print("1) Doc files (txt, docx, doc, pdf). \n",	"2) Images files (png, gif, jpg, jpge). \n", "3) Audio files (mp3, wma, flac...). \n", "4) Video files (mp4, wmv, mov...). \n", "5) Custom files extension.")
+	print("1) Doc files (txt, docx, doc, pdf). \n",	"2) Images files (png, gif, jpg, jpge). \n", "3) Audio files (mp3, wma, flac...). \n", "4) Video files (mp4, wmv, mov...). \n", "5) Custom files extension. \n", "6) All files extensions. \n")
 	x = int(input(""))
 	# no finished, use a for plox
 	if (x > 0) and (x < 7):
@@ -99,18 +101,24 @@ def fileTypes():
 		elif (x == 4):
 			return vidFiles
 		elif (x == 5):
-			print("Please write the type of files you want. ### INSIDE singles quotes! ### eg: '.bat','.iso','.wav'\n")
+			print("Please write the type of files you want, without any quotes; just the file extension and then ENTER \n")
+			# Ask the user for the number of extensions	that he is going to use
+			total = (int(input('How many file extensions ?: \n')))
+			for _ in range(total):
+				messages = input('-> ')
+				customFiles.append(messages)
+				tCustomFiles = tuple(customFiles)
+				# tCustomFiles = tupla of CustomFiles list
+			return tCustomFiles
+
 		
-################################################
-################################################
-################################################
-################################################
-			################################################
-################################################
-################################################
 			ownFiles= input(":")
 			print(ownFiles)
 			return ownFiles
+		elif (x == 6):
+			return allFiles
+
+
 		else:
 			print("how did you get here ?")
 
