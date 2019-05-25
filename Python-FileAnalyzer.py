@@ -110,11 +110,7 @@ def fileTypes():
 				tCustomFiles = tuple(customFiles)
 				# tCustomFiles = tupla of CustomFiles list
 			return tCustomFiles
-
 		
-			ownFiles= input(":")
-			print(ownFiles)
-			return ownFiles
 		elif (x == 6):
 			return allFiles
 
